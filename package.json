@@ -1,0 +1,22 @@
+{
+  "name": "shopifychallenger",
+  "version": "1.0.0",
+  "description": "\"For Shopify Backend Intern Challenge (2022)\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jhong97/shopifyChallenge.git"
+  },
+  "author": "John Hong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jhong97/shopifyChallenge/issues"
+  },
+  "homepage": "https://github.com/jhong97/shopifyChallenge#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
