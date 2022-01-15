@@ -1,0 +1,44 @@
+:root{}
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.text-center{
+	text-align:center;
+}
+.container{
+	max-width: 1024px;
+	margin: auto;
+}
+
+#mainTable{
+	margin-top 6em;
+}
+
+#mainTable .container .box-nav > a{
+	font-size: 1em;
+	padding: .5em 1em;
+}
+
+#mainTable .container form{
+	margin: 2em 0;
+}
+
+table{
+	border-spacing: 0px;
+	width: 100%;
+}
+.table td, .table th{
+	padding .75em;
+	vertical-align: top;
+	text-align: center;
+	border-top: 1px solid var(--border);
+}
+
+.formGroup {
+	width: 100%;
+	padding: .6em 1em;
+}
