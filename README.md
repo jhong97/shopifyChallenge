@@ -1,9 +1,10 @@
 Backend Developer Challenge for Summer '22 Internship - Shopify:
 
 # Project Use Guide
-After cloning repository first install nodeJS. This can be done from [nodeJS website](https://nodejs.org/en/download/).
-Then, run the command `npm install` to install all relevant node modules and dependencies.
-Execute script `npm start` to launch web app. Access webapp from Firefox or Chrome at [local host port 3000](http://localhost:3000/). 
+1. After cloning repository first install nodeJS. This can be done from [nodeJS website](https://nodejs.org/en/download/).
+2. Run the command `npm install` to install all relevant node modules and dependencies.
+3. Execute script `npm start` from terminal to launch web app.
+4. Access webapp from Firefox or Chrome at [local host port 3000](http://localhost:3000/). 
 
 # Project Overview
 - Basic CRUD application + export dataset to CSV extra function
