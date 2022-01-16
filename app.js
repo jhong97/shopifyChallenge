@@ -39,7 +39,6 @@ app.post("/", (req, res) =>{
 		originalProduct = {
 			id : parseInt(req.body.id)
 		};
-		console.log(originalProduct);
 		connection.query("update inventory set ? where ?", [updatedProduct, originalProduct], function(err, results){
 			if(err) throw err;
 			res.redirect("/");
