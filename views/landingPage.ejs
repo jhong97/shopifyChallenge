@@ -20,13 +20,24 @@
 <!-- Table -->
 	<main id = "mainTable">
     		<div class = "container">
-	    		<div class = "box-nav">
-		    		<a href = "/insert">
-			    		<span> Add new product</span>
-		    		</a>
-			</div>
+	    		<div class = "box-nav"></div>
 				<table class = "table">
 					<thead>
+					<tr> 
+						<td> 
+							<a href = "/insert">
+								<span> Add new product</span>
+							</a>
+						</td>
+						<td> </td>
+						<td> </td>
+						<td>
+							<a href = "/downloadCSV" download = "mySqlData.csv">
+								<span> Convert data csv </span>
+							</a> 
+						</td>
+						
+					</tr>
 					<tr>
 						<th> SKU_ID </th>
 						<th> Product_Name</th>

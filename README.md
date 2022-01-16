@@ -8,12 +8,12 @@ Backend Developer Challenge for Summer '22 Internship - Shopify:
 
 # Project Overview
 - Basic CRUD application + export dataset to CSV extra function
-- Frontend- HTML + EJS
+- Frontend- HTML, EJS, CSS (tiny bit)
 - Backend: NodeJS
 - DB: MySQL
 - Hosting: AWS (RDS)
 
-# Relevant JS/Node Modules:
+# Relevant JS Libraries/Node Modules:
 - Express
 - MySQL
 - Body-parser

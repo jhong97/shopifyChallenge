@@ -25,23 +25,26 @@
 			</div>
 			<div class = "text-center">
 				<h2> New Product</h2>
-				<span> Use below form to insert a new product</span>
+				<span> Use below form to add a new product</span>
 			</div>
 			
-			<form method ="POST" id = "updateProduct">
-				<div class "newProduct"> 
-				<div class "formGroup">
-					<label = "Product Name">Product Name</label>
-					<input type = "text" name = "productName" value = "">
-				</div>
-				<div class "formGroup">
-					<label = "Quantity">Quantity</label>
-					<input type = "number" name = "quantity" value = 1>
-				</div>
-				<div class "formGroup">
-					<button type = "submit" name = "save">Save</button>
-			</form>
-		</div>
+			<form method ="POST" id = "addProduct"> 
+				<table>
+					<tr>
+						<td align = "left"> Product Name: </td>
+						<td><input type = "text" name = "productName" maxlength = "50" value = ""> </td>
+					</tr>
+					<tr>
+						<td align = "left"> Quantity: </td>
+						<td> <input type = "number" name = "quantity" min = "1" value = 1></td>
+						
+					</tr>
+					<tr>
+						<td align = "left"><button type = "submit" name = "save">Save</button> </td>
+					</tr>
+				</table>
+			</form> 
+		</div>\
 	</main>
 </body>
 

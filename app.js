@@ -1,6 +1,8 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const mysql = require('mysql');
+const json2csvParser = require("json2csv").Parser;
+const fs = require("fs");
 const app = express()
 const port = 3000;
 
@@ -17,7 +19,7 @@ let data;
 app.get("/", (req, res) => {	
 	const query = "select * from inventory;";
 	connection.query(query, function(err, results){
-		if(err) throw err;
+		if(err) throw new Error("issue with retriving data from DB");
 		//storing the first retrieved variables
 		data = results;
 		res.render("landingPage", {data});
@@ -31,7 +33,7 @@ app.post("/", (req, res) =>{
 	if(req.body.editReq != undefined){
 		product = data[parseInt(req.body.editReq)]
 		res.render( "editProduct", {product});
-	}else if(req.body.sendProdData != undefined){
+	}else if(req.body.sendProdData != undefined){  //We are editing a product's entry
 		updatedProduct = {
 			product_name: req.body.productName,
 			quantity: parseInt(req.body.quantity)
@@ -40,17 +42,17 @@ app.post("/", (req, res) =>{
 			id : parseInt(req.body.id)
 		};
 		connection.query("update inventory set ? where ?", [updatedProduct, originalProduct], function(err, results){
-			if(err) throw err;
+			if(err) throw new Error("issue with update");
 			res.redirect("/");
-		})
+		});
 	}
 	else{
-		//otherwise we are deleting the product, only 2 possible ways to get a post request
+		//otherwise we are deleting the product
 		product = data[parseInt(req.body.delete)]
 		connection.query("delete from inventory where id = ?", product.id, function(err, result){
-			if(err) throw err;
+			if(err) throw new Error("issue with deleting");
 			res.redirect("/")
-		})
+		});
 	}
 })
 
@@ -60,15 +62,31 @@ app.get("/insert", (req, res) =>{
 })
 
 
-// Creating/Inserting a new product
+// Creating/Inserting a new product via post request (clicking save button) from insert page
 app.post("/insert", (req, res) => {
+	//Both productName and quantity have default values set via ejs and validity checking is handled in frontend before POST request is allowed through
         const product = [req.body.productName, parseInt(req.body.quantity)]
         connection.query("insert into inventory (product_name, quantity) values(?, ?)", product, function(err, result){
-                if(err) throw err;
+                if(err) throw new Error("issue with adding new product to inventory");
                 res.redirect("/");
         });
 })
 
+/** 
+ * Writing to csv file, using json2csv module's parser and fs
+ * Assumption is made that request will only come from the landingPage (since that is where we included the button to make the request)
+ * Thus we do not need to make another query to DB as we cached data
+ **/
+
+app.get("/downloadCSV", (req, res) => { 
+	const parser = new json2csvParser({header : true});
+	const csv = parser.parse(data);
+	fs.writeFile("mySqlData.csv", csv, function(err, result){
+		if(err) throw new Error("Issue writing csv file");
+		res.download(`${__dirname}/mySqlData.csv`);
+	});
+}) 
 
 
-app.listen(port, () => {console.log("connection successful")});
+
+app.listen(port, () => {console.log("connection successful")})
