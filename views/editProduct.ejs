@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang ="en">
+<head> 
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width = device-wdith, initial-scale = 1.0">
+        <link href = "/style.css" rel = "stylesheet">
+</head>
+
+<body>
+        <header id = "header">
+                <nav>
+                        <div class = "container">
+                                <div class = "text-center">
+                                        <a> Shopify Crud App</a>
+                                </div>
+                        </div>
+                </nav>
+        </header>
+
+        <main>
+                <div class = "container">
+                        <table class = "table">
+				<thead>
+				<tr>
+					<th> </th>
+					<th> SKU_ID </th>
+					<th> Product_Name </th>
+					<th> Quantity </th>
+				</tr>
+				</thead>
+					<tbody>
+					<tr>
+					<% var pr = product %>
+					<td> Product Being Edited"
+					<td> <%= pr.id %> </td>
+					<td> <%= pr.product_name %> </td>
+					<td> <%= pr.quantity %>  </td>
+					</tr>
+					<tr> 
+					<td> New information
+					<form method = "POST">
+						<td>   
+							<%= pr.id %>
+						</td>
+						<input type = "hidden" name = "id" value = <%= pr.id %> >
+						<td> 
+							<input type = "text" name = "productName" value = <%= pr.product_name %> > 
+						</td>
+						<td>
+							<input type = "number" name = "quantity" value = <%= pr.quantity%> >
+						</td>
+						<td> 
+							<button type = "save" name = "sendProdData"> Save </button>
+						</td>
+						
+					</form>
+					</tr>
+				</tbody>
+			</table>
+                        <form method ="POST" id = "editProduct">
+                        </form>
+                </div>
+        </main>
+</body>
+
+</html>
+

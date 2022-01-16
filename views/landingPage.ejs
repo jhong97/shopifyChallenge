@@ -4,9 +4,9 @@
 <head> 
 	<meta charset = "UTF-8">
 	<meta name = "viewport" content = "width = device-wdith, initial-scale = 1.0">
-	<link href = "/style.css" rel = "stylesheet">
+	<link href = "/style.css" rel = "stylesheet"i>
 </head>
-
+			
 <body>
 	<header id = "header">
 		<nav>
@@ -34,19 +34,21 @@
 					</tr>
 					</thead>
 					<tbody>
-						<% for(let i = 0; i < data.length; ++i){ %>
-						<tr>
-							<td><%= data[i].id %> </td>
-							<td><%= data[i].product_name %></td>
-							<td><%= data[i].quantity %></td>
-							<td> 
-								<button type = "edit" value = "edit"> Edit!</button>
-							</td>
-							<td>
-								<button type = "delete" value = "edit"> Delete! </button>
-							</td>
-						</tr>
-						<% }%>
+						<% for(let i = 0; i < data.length; ++i){ %> 
+							<tr>
+							<form id = "buttons"  method = "POST">
+								<td><%= data[i].id %> </td>
+								<td><%= data[i].product_name %></td>
+								<td><%= data[i].quantity %></td>
+								<td> 	
+									<button type = "submit" name = "editReq" value = <%= i %>> Edit </button>
+								</td>
+								<td>
+									<button type = "submit" name = "delete" value = <%= i %>> Delete </button>
+								</td>
+							</form>
+							</tr>
+						<%}%> 
 					</tbody>
 				</table>
 		</div>
