@@ -93,16 +93,19 @@ app.post("/insert", (req, res) => {
  **/
 
 app.get("/downloadCSV", (req, res) => { 
-	if(data.length == 0){
-		fs.writeFile("mySqlData.csv", "", function(err, results){
-			if(err) throw new Error("Issue creating csv file");
-		 	res.download(`${__dirname}/mySqlData.csv`);
-		})
-		return;
-	};
 	const parser = new json2csvParser({header : true});
-	const csv = parser.parse(data);
-	fs.writeFile("mySqlData.csv", csv, function(err, result){
+	let csv;
+	if(data.length == 0){
+		headers = {
+			id : "", 
+			product_name : "",
+			quantity : ""
+		};
+		csv = parser.parse(headers);
+	}else{
+		csv = parser.parse(data);
+	}
+		fs.writeFile("mySqlData.csv", csv, function(err, result){
 		if(err) throw new Error("Issue writing csv file");
 		res.download(`${__dirname}/mySqlData.csv`);
 	});

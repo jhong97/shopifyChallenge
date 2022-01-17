@@ -48,7 +48,7 @@
 							<input type = "text" name = "productName" maxlength = 50 value = <%= pr.product_name %>> 
 						</td>
 						<td>
-							<input type = "number" name = "quantity" min = "0" oninput = "validity.valid" value = <%= pr.quantity%> >
+							<input type = "number" name = "quantity" min = "0" max = "2147483647" oninput = "validity.valid" value = <%= pr.quantity%> >
 						</td>
 						<td> 
 							<button type = "save" name = "sendProdData"> Save </button>
