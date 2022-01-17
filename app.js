@@ -12,7 +12,9 @@ app.use(express.static(__dirname + "/assets"));
 
 const connection = require('./db/connection.js');
 
-//we will use this variable as our backend cache
+//This variable will be used as our backend cache, since db is small all data is stored
+//Potential future feature is implmenting pagination
+//and limit size of cache to current page's items as db size increases for performance
 let data;
 
 //Landing page, loading/Reading in table data
@@ -34,7 +36,8 @@ app.post("/", (req, res) =>{
 		product = data[parseInt(req.body.editReq)]
 		res.render( "editProduct", {product});
 	}else if(req.body.sendProdData != undefined){  //We are editing a product's entry
-		if(req.bodyh.quantity === ""){
+		//handling edge case where user empties quantity field in front end and clicks save
+		if(req.body.quantity === ""){
 			res.redirect("/");
 			return;
 		}
@@ -68,6 +71,7 @@ app.get("/insert", (req, res) =>{
 
 // Creating/Inserting a new product via post request (clicking save button) from insert page
 app.post("/insert", (req, res) => {
+	//edge case where user empties quantity field and attempts to save, redirects to page
 	if(req.body.quantity === ""){
 		res.redirect("/insert")
 		return;
@@ -81,9 +85,11 @@ app.post("/insert", (req, res) => {
 })
 
 /** 
- * Writing to csv file, using json2csv module's parser and fs
+ * Writing to csv file function, using json2csv module's parser and fs
+ * Most current state of db is reflected in file
  * Assumption is made that request will only come from the landingPage (since that is where we included the button to make the request)
  * Thus we do not need to make another query to DB as we cached data
+ * Deals with edge case where the db is empty and creates empty file
  **/
 
 app.get("/downloadCSV", (req, res) => { 
