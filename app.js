@@ -34,6 +34,10 @@ app.post("/", (req, res) =>{
 		product = data[parseInt(req.body.editReq)]
 		res.render( "editProduct", {product});
 	}else if(req.body.sendProdData != undefined){  //We are editing a product's entry
+		if(req.bodyh.quantity === ""){
+			res.redirect("/");
+			return;
+		}
 		updatedProduct = {
 			product_name: req.body.productName,
 			quantity: parseInt(req.body.quantity)
@@ -64,6 +68,10 @@ app.get("/insert", (req, res) =>{
 
 // Creating/Inserting a new product via post request (clicking save button) from insert page
 app.post("/insert", (req, res) => {
+	if(req.body.quantity === ""){
+		res.redirect("/insert")
+		return;
+	}
 	//Both productName and quantity have default values set via ejs and validity checking is handled in frontend before POST request is allowed through
         const product = [req.body.productName, parseInt(req.body.quantity)]
         connection.query("insert into inventory (product_name, quantity) values(?, ?)", product, function(err, result){
@@ -79,6 +87,13 @@ app.post("/insert", (req, res) => {
  **/
 
 app.get("/downloadCSV", (req, res) => { 
+	if(data.length == 0){
+		fs.writeFile("mySqlData.csv", "", function(err, results){
+			if(err) throw new Error("Issue creating csv file");
+		 	res.download(`${__dirname}/mySqlData.csv`);
+		})
+		return;
+	};
 	const parser = new json2csvParser({header : true});
 	const csv = parser.parse(data);
 	fs.writeFile("mySqlData.csv", csv, function(err, result){
