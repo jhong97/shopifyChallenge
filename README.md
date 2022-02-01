@@ -1,4 +1,6 @@
+(Please note that DB has been stopped) 
 Backend Developer Challenge for Summer '22 Internship - Shopify:
+
 
 # Project Use Guide
 1. After cloning repository first install nodeJS. This can be done from [nodeJS website](https://nodejs.org/en/download/).
